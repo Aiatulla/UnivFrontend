@@ -1,5 +1,6 @@
 import { ButtonProps } from "@/components/elements/CustomButton";
 import clsx from "clsx";
+import { Button } from '@heroui/react';
 
 type ChipButtonSize = "sm" | "md" | "lg";
 type ChipButtonVariant = "default" | "primary" | "ghost";
