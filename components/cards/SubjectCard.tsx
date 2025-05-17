@@ -1,30 +1,47 @@
-import { CustomButton } from "../elements/CustomButton"
-import Paragraph from "../elements/Paragraph"
-
+import { 
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Progress,
+  Badge,
+  Button
+} from "@heroui/react";
+import { HiUserGroup } from "react-icons/hi2";
 
 export const SubjectCard = () => {
-  
   return (
-    <div className="min-w-[200px] border-none rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.01)] mb-5 transition-transform duration-300 ease-in-out hover:-translate-y-1">
-      <div className="flex flex-col">
-        <Paragraph type="md" important>CS101 - Introduction to Programming</Paragraph>
-        <Paragraph>Spring 2023</Paragraph>
-        <div className="flex justify-between">
-          <Paragraph>45 students</Paragraph>
-          <Paragraph>Active</Paragraph>
+    <Card className="w-full max-w-[400px] transition-all hover:shadow-md hover:-translate-y-0.5">
+      <CardHeader>
+        <div>
+          <div className="text-lg font-semibold">
+            CS101 - Introduction to Programming
+          </div>
+          <div className="text-gray-500 text-sm pt-1">
+            Spring 2023
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardBody className="space-y-3">
+        <div className="flex  items-center">
+          <HiUserGroup size={22}/>
+          <span className=" pl-2 text-sm">45 students</span>
         </div>
 
-        <div className="mt-3">
-            <small className="text-muted">Grading Progress</small>
-            
+        <div className="space-y-1">
+          <span className="text-xs text-gray-500">
+            Grading Progress
+          </span>
+          <Progress value={75} color="success" />
         </div>
+      </CardBody>
 
-        <CustomButton buttonClassName="mt-3 d-grid gap-2 h-[36px]">
-            View Subject
-        </CustomButton>
-        
-      </div>
-      
-    </div>
-  )
-}
+      <CardFooter className="pt-0">
+        <Button variant="shadow" color="primary" className="w-full rounded-[8px]">
+          View Subject
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+};

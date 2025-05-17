@@ -32,7 +32,7 @@ const AuthPage = () => {
                 type="button"
                 children={r}
                 active={role === r}
-                variant="default"    // make sure to use default variant here
+                ButtonVariant="default"    // make sure to use default variant here
                 size="md"
                 className="cursor-pointer"
                 onClick={() => setRole(r)}
