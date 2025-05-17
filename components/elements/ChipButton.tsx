@@ -1,13 +1,14 @@
-import { ButtonProps } from "@/components/elements/CustomButton";
+import { CustomButtonProps } from "@/components/elements/CustomButton";
 import clsx from "clsx";
+import { Button } from '@heroui/react';
 
 type ChipButtonSize = "sm" | "md" | "lg";
 type ChipButtonVariant = "default" | "primary" | "ghost";
 
-interface ChipButtonProps extends ButtonProps {
+interface ChipButtonProps extends CustomButtonProps {
   className?: string;
   size?: ChipButtonSize;
-  variant?: ChipButtonVariant;
+  ButtonVariant?: ChipButtonVariant;
   active?: boolean;
 }
 
@@ -27,24 +28,24 @@ const variants: Record<ChipButtonVariant, string> = {
 
 export const ChipButton = ({
   size = "sm",
-  variant = "default",
+  ButtonVariant = "default",
   className,
   active,
-  text,
+  children,
   ...rest
 }: ChipButtonProps) => {
   return (
     <button
       className={clsx(
         sizes[size],
-        variants[variant],
+        variants[ButtonVariant],
         "transition-all duration-300 ease-in-out rounded-full cursor-pointer",
-        active && variant === "default" && "!bg-blue-600 text-white !border-blue-600",
+        active && ButtonVariant === "default" && "!bg-blue-600 text-white !border-blue-600",
         className
       )}
       {...rest}
     >
-      {text}
+      {children}
     </button>
   );
 };

@@ -30,9 +30,9 @@ const AuthPage = () => {
               <ChipButton
                 key={r}
                 type="button"
-                text={r}
+                children={r}
                 active={role === r}
-                variant="default"    // make sure to use default variant here
+                ButtonVariant="default"    // make sure to use default variant here
                 size="md"
                 className="cursor-pointer"
                 onClick={() => setRole(r)}
@@ -51,7 +51,7 @@ const AuthPage = () => {
               placeholder="Enter your password"
               label="Password"
             />
-            <CustomButton text="Login" type="submit" buttonClassName="text-[24px] text-white"/>
+            <CustomButton children="Login" type="submit" buttonClassName="text-[24px] text-white"/>
           </form>
         </div>
       </div>
