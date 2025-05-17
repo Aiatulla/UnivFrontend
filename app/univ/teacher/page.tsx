@@ -1,10 +1,10 @@
 
-
+import { SubjectCard } from "@/components/cards/SubjectCard";
 
 const TeachersPage = () => {
     return (
         <div>
-            Hello from teachers page
+            <SubjectCard></SubjectCard>
         </div>
     )
 }
