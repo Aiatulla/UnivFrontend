@@ -1,6 +1,10 @@
 import { Progress } from "@heroui/react"
 
-export const CustomProgress = () => {
+type ProgressProps = {
+    value: number;
+}
+
+export const CustomProgress = ({ value=0 } : ProgressProps) => {
     return (
         <div className="max-w-md">
       <Progress
@@ -8,10 +12,10 @@ export const CustomProgress = () => {
         maxValue={100}
         showValueLabel={false}
         size="sm"
-        value={95}
+        value={value}
       />
       <div className="text-sm mt-1">
-        95%
+        {value}%
       </div>
     </div>
     )
