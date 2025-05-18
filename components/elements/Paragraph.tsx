@@ -23,7 +23,7 @@ const Paragraph = ({ children, className, type, id, important }: ParagraphProps)
             case 'md':
               return clsx('text-[20px] leading-[140%] tracking-[-0.01em]');
             case 'sm':
-              return clsx('text-[12px] leading-[140%] tracking-[-0.01em]');
+              return clsx('text-[15px] leading-[140%] tracking-[-0.01em]');
             default:
               return clsx('text-[16px] leading-[130%] tracking-[-0.02em]');
           }

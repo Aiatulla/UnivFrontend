@@ -41,9 +41,9 @@ const data = [
 
 export const Categories = () => {
     return (
-        <div>
+        <div className="pt-3">
         <QuizzesCategoryAccordion/>
-        <CustomTable headers={headers} data={data} columnWidths={["w-1/5", "w-1/5", "w-1/5", "w-2/5"]} />
+        {/* <CustomTable headers={headers} data={data} columnWidths={["w-1/5", "w-1/5", "w-1/5", "w-2/5"]} /> */}
         </div>
     )
 }
