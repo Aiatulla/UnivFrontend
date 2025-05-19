@@ -11,7 +11,7 @@ import { HiUserGroup } from "react-icons/hi2";
 
 export const SubjectCard = () => {
   return (
-    <Card className="w-full max-w-[400px] transition-all hover:shadow-md hover:-translate-y-0.5">
+    <Card className="min-w-[400px] transition-all hover:shadow-md hover:-translate-y-0.5 border" >
       <CardHeader>
         <div>
           <div className="text-lg font-semibold">
