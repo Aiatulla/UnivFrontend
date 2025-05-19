@@ -1,19 +1,16 @@
 import { CustomButton } from "@/components/elements/CustomButton";
+import Paragraph from "@/components/elements/Paragraph";
 import { CustomTable } from "@/components/tables/CustomTable";
 import { CustomProgress } from "@/components/tables/Progress";
-import { Pagination, Button } from "@heroui/react";
+import { Pagination, Button, Input } from "@heroui/react";
+import { HiPlus } from "react-icons/hi2";
+import { IoSearch } from "react-icons/io5";
 
 const handleView = (rowName: string) => {
   alert(`Viewing ${rowName}`);
 };
 
-const headers = [
-  "Student ID",
-  "Name",
-  "Current Grade",
-  "Attendance",
-  "Action",
-];
+const headers = ["Student ID", "Name", "Current Grade", "Attendance", "Action"];
 
 const data = [
   [
@@ -34,15 +31,37 @@ const data = [
 export const StudentWidget = () => {
   return (
     <div>
-      <CustomTable headers={headers} data={data} />
-      <div className="flex justify-center">
-        <Pagination
-          className="mt-5 rounded-[8px]"
-          isCompact
-          showControls
-          initialPage={1}
-          total={10}
-        />
+      <div className="flex flex-row justify-between">
+        <div className="flex">
+          <Input
+            placeholder="Search..."
+            classNames={{
+              inputWrapper:
+                "rounded-[8px] min-h-[36px] border-[1px] border-neutral-300 rounded-r-none hover:bg-white",
+            }}
+            className=" h-[36px] hover:bg-white"
+            radius="none"
+          />
+          <Button className="!min-w-[20px] bg-white border-[0.5px] h-[36px] border-neutral-500 text-gray-500  rounded-[8px] rounded-l-none hover:bg-gray-500 hover:text-white">
+            <IoSearch size={20} />
+          </Button>
+        </div>
+        <Button className="!w-[150px] rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7] text-white">
+          <HiPlus size={20} stroke-width={1} className="" />
+          Add Student
+        </Button>
+      </div>
+      <div className="pt-4">
+        <CustomTable headers={headers} data={data} />
+        <div className="flex justify-center">
+          <Pagination
+            className="mt-5 rounded-[8px]"
+            isCompact
+            showControls
+            initialPage={1}
+            total={10}
+          />
+        </div>
       </div>
     </div>
   );
