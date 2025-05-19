@@ -6,9 +6,10 @@ import Paragraph from "./Paragraph";
 interface CustomDropdownProps {
   mainLabel?: string;
   label?: string;
-  data: string[];
+  data?: string[];
   defaultSelected?: string;
   onSelect?: (selectedItem: string) => void;
+  className?: string;
 }
 
 export const CustomDropdown = ({
@@ -17,6 +18,7 @@ export const CustomDropdown = ({
   defaultSelected,
   onSelect,
   mainLabel,
+  className,
 }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string | undefined>(
@@ -32,11 +34,13 @@ export const CustomDropdown = ({
   };
 
   return (
-    <div className="relative w-full max-w-xs mx-auto">
-      <Paragraph className="!pb-2">{mainLabel}</Paragraph>
+    <div className="relative w-full  mx-auto ">
+      <Paragraph className="block mb-2 text-sm text-gray-800 font-medium">
+        {mainLabel}
+      </Paragraph>
       <button
         type="button"
-        className={`w-full flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-white shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150 ease-in-out ${
+        className={`${className} w-full flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-white shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150 ease-in-out ${
           isOpen ? "ring-2 ring-blue-500 border-blue-500" : ""
         }`}
         onClick={() => setIsOpen(!isOpen)}
@@ -63,7 +67,7 @@ export const CustomDropdown = ({
 
       {isOpen && (
         <div
-          className="absolute z-10 w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out"
+          className="absolute z-10 w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out overflow-auto"
           role="listbox"
         >
           {data.length > 0 ? (
