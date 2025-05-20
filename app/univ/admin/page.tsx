@@ -8,6 +8,7 @@ import Paragraph from "@/components/elements/Paragraph";
 import { CustomModal } from "@/components/modals/custom-modal";
 import { CreateClassModal } from "@/components/widgets/admin-page/create-modals/add-class";
 import { Button, Divider } from "@heroui/react";
+import { InfoCards } from "@/components/cards/info-cards";
 
 const AdminPage = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -73,8 +74,11 @@ const AdminPage = () => {
           <div className="mb-4 md:mb-0">
             <div className="flex items-center">
               <Paragraph className="font-bold text-gray-800" type="lg">
-                Teacher Dashboard
+                Admin Dashboard
               </Paragraph>
+            </div>
+            <div className="my-2 h-[30px] overfolw-x-auto py-4">
+              <InfoCards info="Classes" count="24" />
             </div>
           </div>
         </div>
