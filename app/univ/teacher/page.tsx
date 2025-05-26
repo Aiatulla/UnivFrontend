@@ -12,6 +12,7 @@ import { div } from "framer-motion/client";
 import { QuizzesCategoryAccordion } from "@/components/elements/Accordion";
 import { StudentWidget } from "@/components/widgets/teacher-page/student";
 import { GradeDistribution } from "@/components/widgets/teacher-page/grade-distribution";
+import { FaFileExport } from "react-icons/fa";
 
 const tabs: string[] = [
   "Students",
@@ -90,9 +91,10 @@ const TeachersPage = () => {
               </div>
               <Button
                 type="button"
-                className="!bg-white !text-blue-600  px-4 py-2 rounded !w-[50px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
+                className="!bg-white !text-blue-600  px-4 mt-2 rounded !w-[100px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
               >
-                View
+                <FaFileExport size={20} strokeWidth={1} className="" />
+                Export
               </Button>
             </div>
             <div className="border-b-[2px] border-neutral-200 mt-6">
