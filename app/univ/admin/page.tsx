@@ -7,8 +7,13 @@ import { CustomInput } from "@/components/elements/CustomInput";
 import Paragraph from "@/components/elements/Paragraph";
 import { CustomModal } from "@/components/modals/custom-modal";
 import { CreateClassModal } from "@/components/widgets/admin-page/create-modals/add-class";
-import { Button, Divider } from "@heroui/react";
+import { Button, Divider, Input, Pagination } from "@heroui/react";
 import { InfoCards } from "@/components/cards/info-cards";
+import { HiPlus } from "react-icons/hi2";
+import { CustomTable } from "@/components/tables/CustomTable";
+import { IoSearch } from "react-icons/io5";
+import { data } from "framer-motion/client";
+import { CustomDashboard } from "@/components/widgets/admin-page/mini-pages/custom-dashboard";
 
 const AdminPage = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -20,6 +25,91 @@ const AdminPage = () => {
     "Teachers",
     "Semesters",
   ];
+
+  const headers = [
+    "Student ID",
+    "Name",
+    "Class",
+    "Semester",
+    "GPA",
+    "Subjects",
+  ];
+  const data = [
+    [
+      "001",
+      "Tony Reichert",
+      "CS24",
+      "Spring 2024",
+      "3.8",
+      "Computer Science(A), Mathematics(B), Physics(A)",
+    ],
+    [
+      "001",
+      "Bob Williams",
+      "CS24",
+      "Spring 2024",
+      "3.2",
+      "CS101 (B), CS201 (B-), MATH101 (B+)",
+    ],
+  ];
+
+  const pages = {
+    Dashboard: (
+      <CustomDashboard
+        headers={headers}
+        data={data}
+        topLeftContent="Dashboard"
+        topRightContent={
+          <div className="flex">
+            <Input
+              placeholder="Search..."
+              classNames={{
+                inputWrapper:
+                  "rounded-[8px] min-h-[36px] border-[1px] border-neutral-300 rounded-r-none hover:bg-white",
+              }}
+              className=" h-[36px] hover:bg-white"
+              radius="none"
+            />
+            <Button className="!min-w-[20px] bg-white border-[0.5px] h-[36px] border-neutral-500 text-gray-500  rounded-[8px] rounded-l-none hover:bg-gray-500 hover:text-white">
+              <IoSearch size={20} />
+            </Button>
+          </div>
+        }
+      />
+    ),
+    Classes: (
+      <CustomDashboard
+        headers={headers}
+        data={data}
+        topLeftContent="Classes Management"
+        topRightContent={<CreateClassModal />}
+      />
+    ),
+    Students: (
+      <CustomDashboard
+        headers={headers}
+        data={data}
+        topLeftContent="Students Management"
+        topRightContent={<CreateClassModal />}
+      />
+    ),
+    Teachers: (
+      <CustomDashboard
+        headers={headers}
+        data={data}
+        topLeftContent="Teachers Management"
+        topRightContent={<CreateClassModal />}
+      />
+    ),
+    Semesters: (
+      <CustomDashboard
+        headers={headers}
+        data={data}
+        topLeftContent="Semesters Management"
+        topRightContent={<CreateClassModal />}
+      />
+    ),
+  };
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -77,9 +167,18 @@ const AdminPage = () => {
                 Admin Dashboard
               </Paragraph>
             </div>
-            <div className="my-2 h-[30px] overfolw-x-auto py-4">
+            <div className="flex overflow-x-auto whitespace-nowrap gap-4 scroll-thin py-2">
               <InfoCards info="Classes" count="24" />
+              <InfoCards info="Students" count="45" className="bg-green-700" />
+              <InfoCards info="Teachers" count="10" className="bg-cyan-500" />
+              <InfoCards
+                info="Active Semesters"
+                count="24"
+                className="bg-yellow-500"
+              />
             </div>
+
+            {pages[activeItem as keyof typeof pages] || "No content available"}
           </div>
         </div>
       </div>

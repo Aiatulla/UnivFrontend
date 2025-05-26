@@ -34,7 +34,7 @@ export const CustomDropdown = ({
   };
 
   return (
-    <div className="relative w-full  mx-auto ">
+    <div className="relative w-full  mx-auto">
       <Paragraph className="block mb-2 text-sm text-gray-800 font-medium">
         {mainLabel}
       </Paragraph>
