@@ -4,7 +4,7 @@ interface InputProps {
   label?: string;
   text?: string;
   placeholder?: string;
-  type: "text" | "password";
+  type: "text" | "password" | "number" | "email" | "tel";
   isRequired?: boolean;
   inputClassName?: string;
   labelClassName?: string;

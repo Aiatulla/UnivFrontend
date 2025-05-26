@@ -14,6 +14,9 @@ import { CustomTable } from "@/components/tables/CustomTable";
 import { IoSearch } from "react-icons/io5";
 import { data } from "framer-motion/client";
 import { CustomDashboard } from "@/components/widgets/admin-page/mini-pages/custom-dashboard";
+import { AddStudentModal } from "@/components/widgets/admin-page/create-modals/add-student";
+import { AddTeacherModal } from "@/components/widgets/admin-page/create-modals/add-teacher";
+import { AddSubjectModal } from "@/components/widgets/admin-page/create-modals/add-subject";
 
 const AdminPage = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -23,6 +26,7 @@ const AdminPage = () => {
     "Classes",
     "Students",
     "Teachers",
+    "Subjects",
     "Semesters",
   ];
 
@@ -58,7 +62,7 @@ const AdminPage = () => {
       <CustomDashboard
         headers={headers}
         data={data}
-        topLeftContent="Dashboard"
+        topLeftContent="Detailed GPA Report"
         topRightContent={
           <div className="flex">
             <Input
@@ -90,7 +94,7 @@ const AdminPage = () => {
         headers={headers}
         data={data}
         topLeftContent="Students Management"
-        topRightContent={<CreateClassModal />}
+        topRightContent={<AddStudentModal />}
       />
     ),
     Teachers: (
@@ -98,7 +102,15 @@ const AdminPage = () => {
         headers={headers}
         data={data}
         topLeftContent="Teachers Management"
-        topRightContent={<CreateClassModal />}
+        topRightContent={<AddTeacherModal />}
+      />
+    ),
+    Subjects: (
+      <CustomDashboard
+        headers={headers}
+        data={data}
+        topLeftContent="Subjects Management"
+        topRightContent={<AddSubjectModal />}
       />
     ),
     Semesters: (

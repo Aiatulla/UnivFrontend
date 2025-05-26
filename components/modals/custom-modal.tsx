@@ -51,7 +51,7 @@ export const CustomModal = ({
                 {header}
               </ModalHeader>
               <Divider />
-              <ModalBody>{content}</ModalBody>
+              <ModalBody className="mb-3">{content}</ModalBody>
               <Divider />
               <ModalFooter>
                 <Button

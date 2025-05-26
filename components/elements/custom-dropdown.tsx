@@ -67,14 +67,14 @@ export const CustomDropdown = ({
 
       {isOpen && (
         <div
-          className="absolute z-10 w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out overflow-auto"
+          className="absolute z-50 w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out overflow-auto"
           role="listbox"
         >
           {data.length > 0 ? (
             data.map((item) => (
               <button
                 type="button"
-                className={`w-full text-left p-2 my-0.5 rounded-md hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white focus:outline-none transition-colors duration-150 ease-in-out ${
+                className={`w-full text-left p-2 my-0.5 rounded-md hover:bg-blue-500 hover:text-white  focus:bg-blue-500 focus:text-white focus:outline-none transition-colors duration-150 ease-in-out ${
                   selected === item
                     ? "bg-blue-100 text-blue-700 font-medium"
                     : "text-gray-800"
