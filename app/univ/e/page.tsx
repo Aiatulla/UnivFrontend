@@ -6,7 +6,9 @@ import { InfoCards } from "@/components/cards/info-cards";
 const EPage = () => {
   return (
     <div className="flex justify-center items-center h-screen ">
-      <GpaCards topLabel="Overall GPA" bottomLabel="GPA" gpa={3.5} />
+      {/* <GpaCards topLabel="Overall GPA" bottomLabel="GPA" gpa={3.5} />
+       */}
+      {/* <Dashboard/> */}
     </div>
   );
 };

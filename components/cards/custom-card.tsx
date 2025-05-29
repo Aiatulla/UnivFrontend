@@ -26,7 +26,7 @@ export const CustomCard = ({
     <Card
       className={clsx(
         className,
-        isHover && " hover:translate-y-[5px] w-[300px] rounded-[8px]"
+        isHover && " hover:translate-y-[5px] rounded-[8px]"
       )}
     >
       {cardHeader && (

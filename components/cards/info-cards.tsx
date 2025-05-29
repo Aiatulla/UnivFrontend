@@ -19,7 +19,7 @@ export const InfoCards = ({
 }: InfoCardProps) => {
   return (
     <CustomCard
-      className={clsx(`!min-w-[200px] bg-blue-500`, className)}
+      className={clsx(`w-full bg-blue-500`, className)}
       isHover
       cardBody={
         <div className="flex flex-col gap-1 ">
