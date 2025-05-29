@@ -12,7 +12,7 @@ export const CreateSemesterModal = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleCreateSemester = async () => {
+  const handleCreateSemester = async (onClose: () => void) => {
     if (!semesterName || !startDate || !endDate) {
       alert("Please fill in all fields.");
       return;
@@ -34,6 +34,8 @@ export const CreateSemesterModal = () => {
         startDate: startDateFormatted,
         endDate: endDateFormatted,
       });
+
+      onClose();
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : "An unknown error occurred"

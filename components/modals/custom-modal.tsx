@@ -18,7 +18,7 @@ interface CustomModalProps {
   header?: string;
   content?: React.ReactNode;
   buttonLabel?: string;
-  onClick?: () => void;
+  onClick?: (onClose: () => void) => void;
 }
 
 export const CustomModal = ({
@@ -64,7 +64,7 @@ export const CustomModal = ({
                 </Button>
                 <Button
                   className="text-white bg-blue-500 hover:bg-blue-600 rounded-[8px]"
-                  onClick={onClick}
+                  onClick={() => onClick?.(onClose)}
                 >
                   {buttonLabel || "Create"}
                 </Button>
