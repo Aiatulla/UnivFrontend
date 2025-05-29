@@ -173,7 +173,7 @@ const AdminPage = () => {
       {/* Main Content */}
       <div className="w-full md:ml-[25%] lg:ml-[16.666667%] p-4 overflow-y-auto">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
-          <div className="mb-4 md:mb-0">
+          <div className="mb-4 md:mb-0 w-full">
             <div className="flex items-center">
               <Paragraph className="font-bold text-gray-800" type="lg">
                 Admin Dashboard

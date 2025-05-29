@@ -5,6 +5,7 @@ import { ChipButton } from "@/components/elements/ChipButton";
 import { CustomButton } from "@/components/elements/CustomButton";
 import { CustomInput } from "@/components/elements/CustomInput";
 import { fetchLoginConnections } from "@/backend/connections/login-connections";
+import { useRouter } from "next/navigation";
 
 const AuthPage = () => {
   const [userCode, setUserCodeState] = useState("");
@@ -12,6 +13,8 @@ const AuthPage = () => {
   const [role, setRole] = useState<"Student" | "Teacher" | "Admin">("Student");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +26,8 @@ const AuthPage = () => {
     try {
       const data = await fetchLoginConnections({ role, userCode, password });
       console.log("Login successful:", data);
+      const rolePath = role.toLowerCase();
+      router.push(`/univ/${rolePath}`);
     } catch (err: any) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       console.error("Login error:", err);

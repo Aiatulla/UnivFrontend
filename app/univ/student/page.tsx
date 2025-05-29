@@ -22,9 +22,8 @@ import { FaChartBar } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 
 const StudentPage = () => {
-  const [activeTab, setActiveTab] = useState("Students");
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row ">
       {/* Sidebar */}
       <div className="w-full md:w-3/12 lg:w-2/12 fixed h-full bg-[#2c3e50] z-10">
         {/* Profile Section */}
