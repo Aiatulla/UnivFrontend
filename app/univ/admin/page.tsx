@@ -17,6 +17,7 @@ import { CustomDashboard } from "@/components/widgets/admin-page/mini-pages/cust
 import { AddStudentModal } from "@/components/widgets/admin-page/create-modals/add-student";
 import { AddTeacherModal } from "@/components/widgets/admin-page/create-modals/add-teacher";
 import { AddSubjectModal } from "@/components/widgets/admin-page/create-modals/add-subject";
+import { CreateSemesterModal } from "@/components/widgets/admin-page/create-modals/add-semester";
 
 const AdminPage = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -118,7 +119,7 @@ const AdminPage = () => {
         headers={headers}
         data={data}
         topLeftContent="Semesters Management"
-        topRightContent={<CreateClassModal />}
+        topRightContent={<CreateSemesterModal />}
       />
     ),
   };

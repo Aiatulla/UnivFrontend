@@ -3,3 +3,9 @@ export interface LoginRequest {
   userCode: string;
   password: string;
 }
+
+export interface SemesterType {
+  semesterName: string;
+  startDate: string;
+  endDate: string;
+}

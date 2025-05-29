@@ -18,6 +18,7 @@ interface CustomModalProps {
   header?: string;
   content?: React.ReactNode;
   buttonLabel?: string;
+  onClick?: () => void;
 }
 
 export const CustomModal = ({
@@ -25,6 +26,7 @@ export const CustomModal = ({
   header,
   content,
   buttonLabel,
+  onClick,
 }: CustomModalProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -62,7 +64,7 @@ export const CustomModal = ({
                 </Button>
                 <Button
                   className="text-white bg-blue-500 hover:bg-blue-600 rounded-[8px]"
-                  onPress={onClose}
+                  onClick={onClick}
                 >
                   {buttonLabel || "Create"}
                 </Button>
