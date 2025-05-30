@@ -1,9 +1,10 @@
 import { CustomModal } from "@/components/modals/custom-modal";
 import { CustomInput } from "@/components/elements/CustomInput";
 import { CustomDatePicker } from "@/components/elements/custom-datepicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DateValue } from "@heroui/react";
 import { createSemester } from "@/backend/connections/create-connections";
+import { heroToast } from "@/components/elements/CustomToast";
 
 export const CreateSemesterModal = () => {
   const [semesterName, setSemesterName] = useState("");
@@ -11,7 +12,6 @@ export const CreateSemesterModal = () => {
   const [endDate, setEndDate] = useState<DateValue | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
   const handleCreateSemester = async (onClose: () => void) => {
     if (!semesterName || !startDate || !endDate) {
       alert("Please fill in all fields.");
@@ -35,6 +35,10 @@ export const CreateSemesterModal = () => {
         endDate: endDateFormatted,
       });
 
+      heroToast({
+        description: "Semester created successfully.",
+        color: "success",
+      });
       onClose();
     } catch (error) {
       setErrorMessage(

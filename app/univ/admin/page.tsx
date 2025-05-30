@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { heroToast } from "@/components/elements/CustomToast";
 import { CustomDropdown } from "@/components/elements/custom-dropdown";
 import { CustomButton } from "@/components/elements/CustomButton";
 import { CustomInput } from "@/components/elements/CustomInput";
@@ -124,6 +125,14 @@ const AdminPage = () => {
     ),
   };
 
+  const handleLogout = () => {
+    heroToast({
+      title: "Logout",
+      description: "You have successfully logged out.",
+      color: "danger",
+    });
+  };
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       {/* Sidebar */}
@@ -165,7 +174,10 @@ const AdminPage = () => {
 
         {/* Bottom Section */}
         <div className="absolute bottom-6 left-0 right-0 px-4">
-          <Button className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center">
+          <Button
+            onClick={handleLogout}
+            className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center"
+          >
             <span className="mr-2">Logout</span>
           </Button>
         </div>
