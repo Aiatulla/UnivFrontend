@@ -5,7 +5,16 @@ export interface LoginRequest {
 }
 
 export interface SemesterType {
+  id?: number;
   semesterName: string;
   startDate: string;
   endDate: string;
+  status?: string;
+}
+
+export interface ClassType {
+  id?: number;
+  classCode: string;
+  className: string;
+  semesterId: number;
 }

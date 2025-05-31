@@ -6,26 +6,26 @@ import Paragraph from "./Paragraph";
 interface CustomDropdownProps {
   mainLabel?: string;
   label?: string;
-  data?: string[];
-  defaultSelected?: string;
-  onSelect?: (selectedItem: string) => void;
+  data?: any[];
+  defaultSelected?: any;
+  onSelect?: (selectedItem: any) => void;
   className?: string;
 }
 
 export const CustomDropdown = ({
   label = "Select an Option",
-  data = ["Option 1", "Option 2", "Option 3"],
+  data,
   defaultSelected,
   onSelect,
   mainLabel,
   className,
 }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | undefined>(
-    defaultSelected || (data.length > 0 ? data[0] : undefined)
+  const [selected, setSelected] = useState<any | undefined>(
+    defaultSelected || (data && data.length > 0 ? data[0] : undefined)
   );
 
-  const handleSelect = (item: string) => {
+  const handleSelect = (item: any) => {
     setSelected(item);
     setIsOpen(false);
     if (onSelect) {
@@ -47,7 +47,9 @@ export const CustomDropdown = ({
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className="text-gray-700">{selected || label}</span>
+        <span className="text-gray-700">
+          {selected ? selected.semesterName : label}
+        </span>
         <svg
           className={`w-5 h-5 text-gray-400 transform transition-transform duration-200 ease-in-out ${
             isOpen ? "rotate-180" : ""
@@ -67,10 +69,10 @@ export const CustomDropdown = ({
 
       {isOpen && (
         <div
-          className="absolute z-50 w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out overflow-auto"
+          className="absolute z-[9999] w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out overflow-auto"
           role="listbox"
         >
-          {data.length > 0 ? (
+          {data && data.length > 0 ? (
             data.map((item) => (
               <button
                 type="button"
@@ -79,12 +81,12 @@ export const CustomDropdown = ({
                     ? "bg-blue-100 text-blue-700 font-medium"
                     : "text-gray-800"
                 }`}
-                key={item}
+                key={item.id}
                 onClick={() => handleSelect(item)}
                 role="option"
                 aria-selected={selected === item}
               >
-                {item}
+                {item.semesterName}
               </button>
             ))
           ) : (

@@ -36,7 +36,7 @@ export const CustomModal = ({
         onPress={onOpen}
         className="text-white rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7]"
       >
-        <HiPlus size={20} stroke-width={2} className="" />
+        <HiPlus size={20} strokeWidth={2} className="" />
         <Paragraph className="text-white font-[500]">{button}</Paragraph>
       </Button>
       <Modal
@@ -46,7 +46,7 @@ export const CustomModal = ({
         onOpenChange={onOpenChange}
         backdrop="opaque"
       >
-        <ModalContent>
+        <ModalContent className="overflow-visible">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
