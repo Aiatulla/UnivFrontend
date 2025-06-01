@@ -6,7 +6,7 @@ export interface LoginRequest {
 
 export interface SemesterType {
   id?: number;
-  semesterName: string;
+  name: string;
   startDate: string;
   endDate: string;
   status?: string;
@@ -17,4 +17,20 @@ export interface ClassType {
   classCode: string;
   className: string;
   semesterId: number;
+}
+
+export interface FetchClassType {
+  id?: number;
+  classCode: string;
+  name: string;
+  semesterId: SemesterType;
+}
+
+export interface StudentType {
+  studentId?: number;
+  studentCode: string;
+  fullName: string;
+  password: string;
+  classId: number;
+  gpa?: number;
 }

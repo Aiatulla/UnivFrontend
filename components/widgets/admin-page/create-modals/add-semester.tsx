@@ -30,7 +30,7 @@ export const CreateSemesterModal = () => {
       ).padStart(2, "0")}-${String(endDate.day).padStart(2, "0")}`;
       //   console.log("Creating semester with data:", startDate, endDate);
       await createSemester({
-        semesterName,
+        name: semesterName,
         startDate: startDateFormatted,
         endDate: endDateFormatted,
       });

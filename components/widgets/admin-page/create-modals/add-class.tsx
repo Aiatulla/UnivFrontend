@@ -23,7 +23,7 @@ export const CreateClassModal = () => {
         const data = await fetchSemesters();
         const normalized = data.map((item: any) => ({
           id: item.semesterId,
-          semesterName: item.semesterName,
+          name: item.semesterName,
           startDate: item.startDate,
           endDate: item.endDate,
           status: item.status,

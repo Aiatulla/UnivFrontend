@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Paragraph from "./Paragraph";
 
 interface CustomDropdownProps {
@@ -10,6 +10,7 @@ interface CustomDropdownProps {
   defaultSelected?: any;
   onSelect?: (selectedItem: any) => void;
   className?: string;
+  name?: string;
 }
 
 export const CustomDropdown = ({
@@ -19,11 +20,16 @@ export const CustomDropdown = ({
   onSelect,
   mainLabel,
   className,
+  name,
 }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<any | undefined>(
-    defaultSelected || (data && data.length > 0 ? data[0] : undefined)
-  );
+  const [selected, setSelected] = useState<any | undefined>(defaultSelected);
+
+  // useEffect(() => {
+  //   if (data && data.length > 0 && !selected) {
+  //     setSelected(data[0]);
+  //   }
+  // }, [data, selected]);
 
   const handleSelect = (item: any) => {
     setSelected(item);
@@ -48,7 +54,7 @@ export const CustomDropdown = ({
         aria-expanded={isOpen}
       >
         <span className="text-gray-700">
-          {selected ? selected.semesterName : label}
+          {selected ? selected.name : label}
         </span>
         <svg
           className={`w-5 h-5 text-gray-400 transform transition-transform duration-200 ease-in-out ${
@@ -86,7 +92,7 @@ export const CustomDropdown = ({
                 role="option"
                 aria-selected={selected === item}
               >
-                {item.semesterName}
+                {item.name}
               </button>
             ))
           ) : (

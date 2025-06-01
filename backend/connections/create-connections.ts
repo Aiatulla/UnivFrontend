@@ -1,4 +1,9 @@
-import { SemesterType, ClassType } from "../types/request-types";
+import {
+  SemesterType,
+  ClassType,
+  StudentType,
+  FetchClassType,
+} from "../types/request-types";
 
 export async function createSemester({
   semesterName,
@@ -57,7 +62,7 @@ export async function fetchClasses() {
       const result = await response.text();
       throw new Error(result);
     }
-    return (await response.json()) as ClassType[];
+    return (await response.json()) as FetchClassType[];
   } catch (err) {
     throw new Error(
       err instanceof Error ? err.message : "Something went wrong"
@@ -84,6 +89,59 @@ export async function createClass({
           semesterId: {
             semesterId, // nested here
           },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const result = await response.text();
+      throw new Error(result);
+    }
+    return await response.text();
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Something went wrong"
+    );
+  }
+}
+
+export async function fetchStudents() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/students`
+    );
+
+    if (!response.ok) {
+      const result = await response.text();
+      throw new Error(result);
+    }
+    return (await response.json()) as StudentType[];
+  } catch (err) {
+    throw new Error(
+      err instanceof Error ? err.message : "Something went wrong"
+    );
+  }
+}
+
+export async function createStudent({
+  studentCode,
+  fullName,
+  password,
+  classId,
+}: StudentType) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/students`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentCode,
+          fullName,
+          password,
+          classId: { classId },
         }),
       }
     );
