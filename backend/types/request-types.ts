@@ -34,3 +34,10 @@ export interface StudentType {
   classId: number;
   gpa?: number;
 }
+
+export interface TeacherType {
+  id?: number;
+  teacherCode: string;
+  fullName: string;
+  password: string;
+}

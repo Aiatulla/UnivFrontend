@@ -3,10 +3,11 @@ import {
   ClassType,
   StudentType,
   FetchClassType,
+  TeacherType,
 } from "../types/request-types";
 
 export async function createSemester({
-  semesterName,
+  name,
   startDate,
   endDate,
 }: SemesterType) {
@@ -18,7 +19,7 @@ export async function createSemester({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ semesterName, startDate, endDate }),
+        body: JSON.stringify({ semesterName: name, startDate, endDate }),
       }
     );
 
@@ -154,6 +155,51 @@ export async function createStudent({
   } catch (error) {
     throw new Error(
       error instanceof Error ? error.message : "Something went wrong"
+    );
+  }
+}
+
+export async function createTeacher({
+  teacherCode,
+  fullName,
+  password,
+}: TeacherType) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/teachers`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          teacherCode,
+          fullName,
+          password,
+        }),
+      }
+    );
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Something went wrong"
+    );
+  }
+}
+
+export async function fetchTeachers() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/teachers`
+    );
+
+    if (!response.ok) {
+      const result = await response.text();
+      throw new Error(result);
+    }
+    return (await response.json()) as TeacherType[];
+  } catch (err) {
+    throw new Error(
+      err instanceof Error ? err.message : "Something went wrong"
     );
   }
 }
