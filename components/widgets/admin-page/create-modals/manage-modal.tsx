@@ -19,6 +19,7 @@ import { SemesterType, StudentData } from "@/backend/types/request-types";
 import { fetchSemesters } from "@/backend/connections/create-connections";
 import { fetchStudentsByClassId } from "@/backend/connections/fetch-datas";
 import { AssignSubjectModal } from "./assign-subject";
+import { AssignTeacherModal } from "./assign-teacher";
 
 const headers1 = ["Semesters", "Start Date", "End Date", "Status", "Actions"];
 
@@ -161,7 +162,11 @@ export const ManageModal = () => {
     ),
     Teachers: (
       <div className="flex flex-col justify-start gap-4">
-        <AddTeacherModal className="!w-[150px] !h-[30px] !text-[12px] !rounded-[4px]" />
+        <AssignTeacherModal
+          className="!w-[150px] !h-[30px] !text-[12px] !rounded-[4px]"
+          classId={1}
+          semesterId={1}
+        />
         <CustomTable headers={headers4} data={data4} />
       </div>
     ),

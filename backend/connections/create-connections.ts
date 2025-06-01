@@ -275,3 +275,45 @@ export async function assignSubjectToClass({
     );
   }
 }
+
+// assignTeacher.ts
+export async function assignTeacher({
+  teacherId,
+  classId,
+  subjectId,
+  semesterId,
+}: {
+  teacherId: number;
+  classId: number;
+  subjectId: number;
+  semesterId: number;
+}) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/teacher-assignments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ teacherId, classId, subjectId, semesterId }),
+      }
+    );
+
+    const text = await response.text();
+
+    if (!response.ok) {
+      throw new Error(text);
+    }
+
+    try {
+      return JSON.parse(text);
+    } catch {
+      return text;
+    }
+  } catch (err) {
+    throw new Error(
+      err instanceof Error ? err.message : "Something went wrong"
+    );
+  }
+}

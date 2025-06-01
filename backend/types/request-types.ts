@@ -36,7 +36,7 @@ export interface StudentType {
 }
 
 export interface TeacherType {
-  id?: number;
+  teacherId?: number;
   teacherCode: string;
   fullName: string;
   password: string;
