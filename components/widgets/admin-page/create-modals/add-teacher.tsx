@@ -5,7 +5,10 @@ import { heroToast } from "@/components/elements/CustomToast";
 import { CustomModal } from "@/components/modals/custom-modal";
 import { useState } from "react";
 
-export const AddTeacherModal = () => {
+type AddTeacherModalProps = {
+  className?: string;
+};
+export const AddTeacherModal = ({ className }: AddTeacherModalProps) => {
   const [fullName, setFullName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [teacherCode, setTeacherCode] = useState<string>("");
@@ -40,6 +43,7 @@ export const AddTeacherModal = () => {
   };
   return (
     <CustomModal
+      buttomClassName={className}
       header="Add New Teacher"
       buttonLabel="Create Teacher"
       button="Add Teacher"

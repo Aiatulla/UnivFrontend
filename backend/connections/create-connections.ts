@@ -143,7 +143,7 @@ export async function createStudent({
           studentCode,
           fullName,
           password,
-          classId: { classId },
+          classes: { classId },
         }),
       }
     );
@@ -235,6 +235,40 @@ export async function createSubject({ subjectCode, name }: SubjectType) {
         body: JSON.stringify({ subjectCode, subjectName: name }),
       }
     );
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Something went wrong"
+    );
+  }
+}
+
+export async function assignSubjectToClass({
+  classId,
+  subjectId,
+  credits,
+}: {
+  classId: number;
+  subjectId: number;
+  credits: number;
+}) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/class-subjects/assign`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ classId, subjectId, credits }),
+      }
+    );
+
+    if (!response.ok) {
+      const result = await response.text();
+      throw new Error(result);
+    }
+
+    return await response.json();
   } catch (error) {
     throw new Error(
       error instanceof Error ? error.message : "Something went wrong"

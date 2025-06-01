@@ -47,3 +47,17 @@ export interface SubjectType {
   subjectCode: string;
   name: string;
 }
+
+export interface StudentData {
+  studentId?: number;
+  studentCode?: string;
+  fullName?: string;
+  password?: string;
+  classes?: {
+    classId: number;
+    classCode: string;
+    className: string;
+    semesterId: SemesterType;
+  };
+  gpa?: number | null;
+}

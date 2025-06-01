@@ -5,7 +5,10 @@ import { heroToast } from "@/components/elements/CustomToast";
 import { CustomModal } from "@/components/modals/custom-modal";
 import { useState } from "react";
 
-export const AddSubjectModal = () => {
+type AddSubjectModalProps = {
+  className?: string;
+};
+export const AddSubjectModal = ({ className }: AddSubjectModalProps) => {
   const [loading, setLoading] = useState(false);
   const [subjectCode, setSubjectCode] = useState<string>("");
   const [subjectName, setSubjectName] = useState<string>("");
@@ -38,6 +41,7 @@ export const AddSubjectModal = () => {
   };
   return (
     <CustomModal
+      buttomClassName={className}
       onClick={handleCreateSubject}
       header="Add New Subject"
       buttonLabel="Add Subject"

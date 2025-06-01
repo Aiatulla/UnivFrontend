@@ -3,6 +3,7 @@ import { CustomTable } from "@/components/tables/CustomTable";
 import { Button, Input, Pagination } from "@heroui/react";
 import { HiPlus } from "react-icons/hi2";
 import { IoSearch } from "react-icons/io5";
+import { ManageModal } from "../create-modals/manage-modal";
 
 export interface CustomDashboardProps {
   headers: string[];
@@ -11,6 +12,27 @@ export interface CustomDashboardProps {
   topLeftContent?: React.ReactNode;
   // isMain?: boolean;
 }
+
+const headers1 = [
+  "Class ID",
+  "Class Name",
+  "Current Semester",
+  "Students",
+  "Subjects",
+  "Teachers",
+  "Actions",
+];
+const data1 = [
+  [
+    "CS24",
+    "	Computer Science 2024",
+    "Spring 2024",
+    "45",
+    "6",
+    "4",
+    <ManageModal key="manage-modal" />,
+  ],
+];
 
 export const CustomDashboard = ({
   headers,
@@ -35,7 +57,7 @@ export const CustomDashboard = ({
           {topRightContent}
         </div>
         <div className="pt-4">
-          <CustomTable headers={headers} data={data} />
+          <CustomTable headers={headers1} data={data1} />
           <div className="flex justify-center">
             <Pagination
               className="mt-5 rounded-[8px]"

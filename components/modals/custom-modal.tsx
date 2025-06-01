@@ -12,6 +12,7 @@ import {
 } from "@heroui/react";
 import { HiPlus } from "react-icons/hi2";
 import Paragraph from "../elements/Paragraph";
+import clsx from "clsx";
 
 interface CustomModalProps {
   button?: string;
@@ -19,6 +20,7 @@ interface CustomModalProps {
   content?: React.ReactNode;
   buttonLabel?: string;
   onClick?: (onClose: () => void) => void;
+  buttomClassName?: string;
 }
 
 export const CustomModal = ({
@@ -27,6 +29,7 @@ export const CustomModal = ({
   content,
   buttonLabel,
   onClick,
+  buttomClassName,
 }: CustomModalProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -34,7 +37,10 @@ export const CustomModal = ({
     <>
       <Button
         onPress={onOpen}
-        className="text-white rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7]"
+        className={clsx(
+          `text-white rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7]`,
+          buttomClassName
+        )}
       >
         <HiPlus size={20} strokeWidth={2} className="" />
         <Paragraph className="text-white font-[500]">{button}</Paragraph>

@@ -6,7 +6,11 @@ import { DateValue } from "@heroui/react";
 import { createSemester } from "@/backend/connections/create-connections";
 import { heroToast } from "@/components/elements/CustomToast";
 
-export const CreateSemesterModal = () => {
+type CreateSemesterProps = {
+  className?: string;
+};
+
+export const CreateSemesterModal = ({ className }: CreateSemesterProps) => {
   const [semesterName, setSemesterName] = useState("");
   const [startDate, setStartDate] = useState<DateValue | null>(null);
   const [endDate, setEndDate] = useState<DateValue | null>(null);
@@ -55,6 +59,7 @@ export const CreateSemesterModal = () => {
       header="Create New Semester"
       buttonLabel="Create Semester"
       button="Add Semester"
+      buttomClassName={className}
       content={
         <div className="flex flex-col gap-5 pt-3">
           <CustomInput

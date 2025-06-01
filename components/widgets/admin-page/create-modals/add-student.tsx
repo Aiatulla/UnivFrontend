@@ -9,10 +9,18 @@ import { heroToast } from "@/components/elements/CustomToast";
 import { CustomModal } from "@/components/modals/custom-modal";
 import { useEffect, useState } from "react";
 
-export const AddStudentModal = () => {
+type AddStudentModalProps = {
+  className?: string;
+  classIdProp?: number; // optional classId from parent
+};
+
+export const AddStudentModal = ({
+  className,
+  classIdProp,
+}: AddStudentModalProps) => {
   const [studentCode, setStudentCode] = useState<string>("");
   const [fullName, setFullName] = useState<string>("");
-  const [classId, setClassId] = useState<number>(0);
+  const [classId, setClassId] = useState<number>(classIdProp ?? 0);
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [classes, setClasses] = useState<FetchClassType[]>([]);
@@ -23,7 +31,6 @@ export const AddStudentModal = () => {
       setLoading(true);
       try {
         const data = await fetchClasses();
-        console.log("classes", data);
         const normalized = data.map((item: any) => ({
           id: item.classId,
           classCode: item.classCode,
@@ -38,6 +45,12 @@ export const AddStudentModal = () => {
         }));
 
         setClasses(normalized);
+
+        // Set classId only if provided as prop
+        if (classIdProp) {
+          const matched = normalized.find((c) => c.id === classIdProp);
+          if (matched) setClassId(matched.id);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong");
         heroToast({
@@ -49,7 +62,7 @@ export const AddStudentModal = () => {
       }
     }
     loadClasses();
-  }, []);
+  }, [classIdProp]);
 
   const handleCreateStudent = async (onClose: () => void) => {
     if (!studentCode || !fullName || !classId || !password) {
@@ -61,7 +74,7 @@ export const AddStudentModal = () => {
     }
     setLoading(true);
     try {
-      const data = await createStudent({
+      await createStudent({
         studentCode,
         fullName,
         classId,
@@ -85,8 +98,9 @@ export const AddStudentModal = () => {
 
   return (
     <CustomModal
-      header="Add New Class"
-      buttonLabel="Create Class"
+      buttomClassName={className}
+      header="Add New Student"
+      buttonLabel="Create Student"
       button="Add Student"
       onClick={handleCreateStudent}
       content={
@@ -105,12 +119,16 @@ export const AddStudentModal = () => {
             inputClassName="h-[38px]"
             onChange={(e) => setFullName(e.target.value)}
           />
+
           <CustomDropdown
             className="h-[38px]"
             mainLabel="Class"
             data={classes}
             onSelect={(selectedItem) => setClassId(selectedItem.id)}
+            selectedId={classId}
+            disabled={!!classIdProp} // disable dropdown if classId was passed
           />
+
           <CustomInput
             type="text"
             label="Password"

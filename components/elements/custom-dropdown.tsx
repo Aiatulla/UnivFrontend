@@ -8,28 +8,36 @@ interface CustomDropdownProps {
   label?: string;
   data?: any[];
   defaultSelected?: any;
+  selectedId?: number;
   onSelect?: (selectedItem: any) => void;
   className?: string;
   name?: string;
+  disabled?: boolean;
 }
 
 export const CustomDropdown = ({
   label = "Select an Option",
   data,
   defaultSelected,
+  selectedId,
   onSelect,
   mainLabel,
   className,
   name,
+  disabled = false,
 }: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<any | undefined>(defaultSelected);
 
-  // useEffect(() => {
-  //   if (data && data.length > 0 && !selected) {
-  //     setSelected(data[0]);
-  //   }
-  // }, [data, selected]);
+  // Update selected from selectedId
+  useEffect(() => {
+    if (data && selectedId !== undefined) {
+      const found = data.find((item) => item.id === selectedId);
+      if (found) {
+        setSelected(found);
+      }
+    }
+  }, [selectedId, data]);
 
   const handleSelect = (item: any) => {
     setSelected(item);
@@ -40,16 +48,21 @@ export const CustomDropdown = ({
   };
 
   return (
-    <div className="relative w-full  mx-auto">
+    <div className="relative w-full mx-auto">
       <Paragraph className="block mb-2 text-sm text-gray-800 font-medium">
         {mainLabel}
       </Paragraph>
       <button
         type="button"
-        className={`${className} w-full flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-white shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-150 ease-in-out ${
+        disabled={disabled}
+        className={`${className} w-full flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-white shadow-sm transition-colors duration-150 ease-in-out ${
           isOpen ? "ring-2 ring-blue-500 border-blue-500" : ""
+        } ${
+          disabled
+            ? "cursor-not-allowed opacity-50"
+            : "hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         }`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => !disabled && setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -73,7 +86,7 @@ export const CustomDropdown = ({
         </svg>
       </button>
 
-      {isOpen && (
+      {isOpen && !disabled && (
         <div
           className="absolute z-[9999] w-full mt-1 p-1 border border-gray-200 rounded-lg bg-white shadow-lg transition-opacity duration-100 ease-out overflow-auto"
           role="listbox"
@@ -82,15 +95,15 @@ export const CustomDropdown = ({
             data.map((item) => (
               <button
                 type="button"
-                className={`w-full text-left p-2 my-0.5 rounded-md hover:bg-blue-500 hover:text-white  focus:bg-blue-500 focus:text-white focus:outline-none transition-colors duration-150 ease-in-out ${
-                  selected === item
+                className={`w-full text-left p-2 my-0.5 rounded-md hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white focus:outline-none transition-colors duration-150 ease-in-out ${
+                  selected?.id === item.id
                     ? "bg-blue-100 text-blue-700 font-medium"
                     : "text-gray-800"
                 }`}
                 key={item.id}
                 onClick={() => handleSelect(item)}
                 role="option"
-                aria-selected={selected === item}
+                aria-selected={selected?.id === item.id}
               >
                 {item.name}
               </button>

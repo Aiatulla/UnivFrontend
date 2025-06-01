@@ -33,29 +33,28 @@ const AdminPage = () => {
   ];
 
   const headers = [
-    "Student ID",
-    "Name",
-    "Class",
-    "Semester",
-    "GPA",
+    "Class ID",
+    "Class Name",
+    "Current Semester",
+    "Students",
     "Subjects",
+    "Teachers",
+    "Actions",
   ];
   const data = [
     [
-      "001",
-      "Tony Reichert",
       "CS24",
+      "	Computer Science 2024",
       "Spring 2024",
-      "3.8",
-      "Computer Science(A), Mathematics(B), Physics(A)",
-    ],
-    [
-      "001",
-      "Bob Williams",
-      "CS24",
-      "Spring 2024",
-      "3.2",
-      "CS101 (B), CS201 (B-), MATH101 (B+)",
+      "45",
+      "6",
+      "4",
+      <Button
+        type="button"
+        className="!bg-white !text-blue-600  px-4  rounded !w-[50px] !h-[30px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
+      >
+        Manage
+      </Button>,
     ],
   ];
 
