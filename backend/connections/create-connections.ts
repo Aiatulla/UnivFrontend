@@ -4,6 +4,7 @@ import {
   StudentType,
   FetchClassType,
   TeacherType,
+  SubjectType,
 } from "../types/request-types";
 
 export async function createSemester({
@@ -200,6 +201,43 @@ export async function fetchTeachers() {
   } catch (err) {
     throw new Error(
       err instanceof Error ? err.message : "Something went wrong"
+    );
+  }
+}
+
+export async function fetchSubjects() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/subjects`
+    );
+
+    if (!response.ok) {
+      const result = await response.text();
+      throw new Error(result);
+    }
+    return (await response.json()) as TeacherType[];
+  } catch (err) {
+    throw new Error(
+      err instanceof Error ? err.message : "Something went wrong"
+    );
+  }
+}
+
+export async function createSubject({ subjectCode, name }: SubjectType) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/univ/subjects`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ subjectCode, subjectName: name }),
+      }
+    );
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Something went wrong"
     );
   }
 }

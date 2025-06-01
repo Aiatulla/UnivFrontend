@@ -41,3 +41,9 @@ export interface TeacherType {
   fullName: string;
   password: string;
 }
+
+export interface SubjectType {
+  id?: number;
+  subjectCode: string;
+  name: string;
+}
