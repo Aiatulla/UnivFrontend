@@ -4,14 +4,6 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface SemesterType {
-  id?: number;
-  name: string;
-  startDate: string;
-  endDate: string;
-  status?: string;
-}
-
 export interface ClassType {
   id?: number;
   classCode: string;
@@ -60,4 +52,19 @@ export interface StudentData {
     semesterId: SemesterType;
   };
   gpa?: number | null;
+}
+
+export interface SemesterType {
+  id?: number;
+  name: string;
+  startDate: string;
+  endDate: string;
+  status?: string;
+}
+
+export interface TeacherAssignmentSummary {
+  teacherCode: string;
+  fullName: string;
+  classCodes: string[]; // e.g., ["CS24", "CS23"]
+  subjectCodes: string[]; // e.g., ["CS101", "CS301"]
 }

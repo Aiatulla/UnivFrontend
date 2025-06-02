@@ -5,6 +5,7 @@ import {
   FetchClassType,
   TeacherType,
   SubjectType,
+  StudentData,
 } from "../types/request-types";
 
 export async function createSemester({
@@ -117,7 +118,7 @@ export async function fetchStudents() {
       const result = await response.text();
       throw new Error(result);
     }
-    return (await response.json()) as StudentType[];
+    return (await response.json()) as StudentData[];
   } catch (err) {
     throw new Error(
       err instanceof Error ? err.message : "Something went wrong"

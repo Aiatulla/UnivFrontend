@@ -13,6 +13,7 @@ import { QuizzesCategoryAccordion } from "@/components/elements/Accordion";
 import { StudentWidget } from "@/components/widgets/teacher-page/student";
 import { GradeDistribution } from "@/components/widgets/teacher-page/grade-distribution";
 import { FaFileExport } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const tabs: string[] = [
   "Students",
@@ -26,7 +27,6 @@ const tabContent = {
   "Categories & Grades": (
     <div>
       <Categories />
-      <Categories />
     </div>
   ),
   "Grade Distribution": <GradeDistribution />,
@@ -35,6 +35,13 @@ const tabContent = {
 
 const TeachersPage = () => {
   const [activeTab, setActiveTab] = useState("Students");
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // Perform logout logic here
+    router.push("/univ/login");
+  };
+
   return (
     <div className="flex flex-col md:flex-row">
       {/* Sidebar */}
@@ -54,7 +61,10 @@ const TeachersPage = () => {
 
         {/* Bottom Section */}
         <div className="absolute bottom-6 left-0 right-0 px-4">
-          <Button className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center">
+          <Button
+            className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center"
+            onClick={handleLogout}
+          >
             <span className="mr-2">Logout</span>
           </Button>
         </div>
@@ -119,14 +129,7 @@ const TeachersPage = () => {
             {/* Div to show the content of the active tab */}
             <div className="bg-white min-h-100 border border-gray-200 shadow-md rounded-[8px] mt-6 mb-6">
               <div className="p-4 flex flex-col">
-                {/* <div className="flex flex-row justify-between">
-                                  <Paragraph  type="md" className="font-[500] ">Assessment Categories</Paragraph>
-                                  <Button className="!w-[150px] rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7] text-white"><HiPlus size={20} stroke-width={1} className="" />Add Category</Button>
-
-                              </div> */}
-                {/* <div className="pt-4"> */}
                 {tabContent[activeTab as keyof typeof tabContent]}
-                {/* </div> */}
               </div>
             </div>
           </div>

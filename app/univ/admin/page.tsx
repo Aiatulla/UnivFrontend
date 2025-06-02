@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { heroToast } from "@/components/elements/CustomToast";
 import { CustomDropdown } from "@/components/elements/custom-dropdown";
 import { CustomButton } from "@/components/elements/CustomButton";
@@ -19,9 +19,99 @@ import { AddStudentModal } from "@/components/widgets/admin-page/create-modals/a
 import { AddTeacherModal } from "@/components/widgets/admin-page/create-modals/add-teacher";
 import { AddSubjectModal } from "@/components/widgets/admin-page/create-modals/add-subject";
 import { CreateSemesterModal } from "@/components/widgets/admin-page/create-modals/add-semester";
+import {
+  StudentData,
+  TeacherAssignmentSummary,
+} from "@/backend/types/request-types";
+import { fetchStudents } from "@/backend/connections/create-connections";
+import { fetchTeacherAssignmentSummaries } from "@/backend/connections/fetch-datas";
+import { ManageModal } from "@/components/widgets/admin-page/create-modals/manage-modal";
+import { useRouter } from "next/navigation";
 
+// const router = useRouter();
 const AdminPage = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const [students, setStudents] = useState<StudentData[]>([]);
+  const [teachers, setTeachers] = useState<TeacherAssignmentSummary[]>([]);
+
+  useEffect(() => {
+    async function loadStudents() {
+      try {
+        const data = await fetchStudents();
+        setStudents(data);
+      } catch (err) {
+        // setError(err instanceof Error ? err.message : "Something went wrong");
+      }
+    }
+    loadStudents();
+  }, []);
+
+  useEffect(() => {
+    async function loadTeachers() {
+      try {
+        const data = await fetchTeacherAssignmentSummaries();
+        setTeachers(data);
+      } catch (err) {
+        // setError(err instanceof Error ? err.message : "Something went wrong");
+      }
+    }
+    loadTeachers();
+  }, []);
+
+  const studentHeaders = ["Student ID", "Full Name", "Class", "GPA", "Actions"];
+  const studentData = students.map((student) => [
+    student.studentCode?.toString() || "",
+    student.fullName || "",
+    student.classes?.classCode || "",
+    student.gpa?.toString() || "0",
+    <Button
+      type="button"
+      className="!bg-white !text-blue-600  px-4  rounded !w-[50px] !h-[30px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
+    >
+      Edit
+    </Button>,
+  ]);
+
+  const teacherData = teachers.map((teacher) => [
+    teacher.teacherCode?.toString() || "",
+    teacher.fullName || "",
+    teacher.classCodes || "",
+    teacher.subjectCodes || "N/A",
+    <Button
+      type="button"
+      className="!bg-white !text-blue-600  px-4  rounded !w-[50px] !h-[30px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
+    >
+      Edit
+    </Button>,
+  ]);
+  const teacherHeaders = [
+    "Teacher ID",
+    "Full Name",
+    "Classes",
+    "Subjects",
+    "Actions",
+  ];
+
+  const headers1 = [
+    "Class ID",
+    "Class Name",
+    "Current Semester",
+    "Students",
+    "Subjects",
+    "Teachers",
+    "Actions",
+  ];
+  const data1 = [
+    [
+      "CS24",
+      "	Computer Science 2024",
+      "Spring 2024",
+      "45",
+      "6",
+      "4",
+      <ManageModal key="manage-modal" />,
+    ],
+  ];
 
   const menuItems = [
     "Dashboard",
@@ -84,24 +174,24 @@ const AdminPage = () => {
     ),
     Classes: (
       <CustomDashboard
-        headers={headers}
-        data={data}
+        headers={headers1}
+        data={data1}
         topLeftContent="Classes Management"
         topRightContent={<CreateClassModal />}
       />
     ),
     Students: (
       <CustomDashboard
-        headers={headers}
-        data={data}
+        headers={studentHeaders}
+        data={studentData}
         topLeftContent="Students Management"
         topRightContent={<AddStudentModal />}
       />
     ),
     Teachers: (
       <CustomDashboard
-        headers={headers}
-        data={data}
+        headers={teacherHeaders}
+        data={teacherData}
         topLeftContent="Teachers Management"
         topRightContent={<AddTeacherModal />}
       />
@@ -125,6 +215,7 @@ const AdminPage = () => {
   };
 
   const handleLogout = () => {
+    // router.push("/univ/login");
     heroToast({
       title: "Logout",
       description: "You have successfully logged out.",

@@ -57,7 +57,7 @@ export const CustomDashboard = ({
           {topRightContent}
         </div>
         <div className="pt-4">
-          <CustomTable headers={headers1} data={data1} />
+          <CustomTable headers={headers} data={data} />
           <div className="flex justify-center">
             <Pagination
               className="mt-5 rounded-[8px]"
