@@ -20,8 +20,14 @@ import { InfoCards } from "@/components/cards/info-cards";
 import { StudentSubjectCard } from "@/components/cards/student-subject-card";
 import { FaChartBar } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
-
+import { useRouter } from "next/navigation";
 const StudentPage = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // Perform logout logic here
+    router.push("/univ/login");
+  };
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Sidebar */}
@@ -41,7 +47,10 @@ const StudentPage = () => {
 
         {/* Bottom Section */}
         <div className="absolute bottom-6 left-0 right-0 px-4">
-          <Button className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center">
+          <Button
+            className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center"
+            onClick={handleLogout}
+          >
             <span className="mr-2">Logout</span>
           </Button>
         </div>

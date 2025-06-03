@@ -28,11 +28,12 @@ import { fetchTeacherAssignmentSummaries } from "@/backend/connections/fetch-dat
 import { ManageModal } from "@/components/widgets/admin-page/create-modals/manage-modal";
 import { useRouter } from "next/navigation";
 
-// const router = useRouter();
 const AdminPage = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [students, setStudents] = useState<StudentData[]>([]);
   const [teachers, setTeachers] = useState<TeacherAssignmentSummary[]>([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     async function loadStudents() {
@@ -210,11 +211,11 @@ const AdminPage = () => {
   };
 
   const handleLogout = () => {
-    // router.push("/univ/login");
+    router.push("/univ/login");
     heroToast({
       title: "Logout",
       description: "You have successfully logged out.",
-      color: "danger",
+      color: "success",
     });
   };
 
