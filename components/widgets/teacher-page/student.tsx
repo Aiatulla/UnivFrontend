@@ -47,7 +47,7 @@ export const StudentWidget = () => {
           </Button>
         </div>
         <Button className="!w-[150px] rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7] text-white">
-          <HiPlus size={20} stroke-width={1} className="" />
+          <HiPlus size={20} strokeWidth={1} className="" />
           Add Student
         </Button>
       </div>

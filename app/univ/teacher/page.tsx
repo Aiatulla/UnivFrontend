@@ -12,6 +12,8 @@ import { div } from "framer-motion/client";
 import { QuizzesCategoryAccordion } from "@/components/elements/Accordion";
 import { StudentWidget } from "@/components/widgets/teacher-page/student";
 import { GradeDistribution } from "@/components/widgets/teacher-page/grade-distribution";
+import { FaFileExport } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const tabs: string[] = [
   "Students",
@@ -25,7 +27,6 @@ const tabContent = {
   "Categories & Grades": (
     <div>
       <Categories />
-      <Categories />
     </div>
   ),
   "Grade Distribution": <GradeDistribution />,
@@ -34,17 +35,38 @@ const tabContent = {
 
 const TeachersPage = () => {
   const [activeTab, setActiveTab] = useState("Students");
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // Perform logout logic here
+    router.push("/univ/login");
+  };
+
   return (
     <div className="flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className="w-full md:w-3/12 lg:w-2/12 md:fixed md:h-full bg-blue-600 z-10">
-        <div className="flex flex-col items-center justify-center h-[40%]">
-          <Paragraph type="md" className="text-white font-[500]">
+      <div className="w-full md:w-3/12 lg:w-2/12 fixed h-full bg-[#2c3e50] z-10">
+        {/* Profile Section */}
+        <div className="flex flex-col items-center pt-10 pb-8">
+          <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-white text-lg font-bold mb-4 border-2 border-white/30">
+            JS
+          </div>
+          <Paragraph type="md" className="text-white font-medium">
             Dr. John Smith
           </Paragraph>
-          <Paragraph className="max-w-[200px] mt-2 text-center text-white">
+          <Paragraph className="text-blue-100/70 text-sm mt-1">
             Computer Science Department
           </Paragraph>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="absolute bottom-6 left-0 right-0 px-4">
+          <Button
+            className="w-full bg-[#3498db] text-white py-3 rounded-[8px] flex justify-center items-center"
+            onClick={handleLogout}
+          >
+            <span className="mr-2">Logout</span>
+          </Button>
         </div>
       </div>
 
@@ -79,9 +101,10 @@ const TeachersPage = () => {
               </div>
               <Button
                 type="button"
-                className="!bg-white !text-blue-600  px-4 py-2 rounded !w-[50px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
+                className="!bg-white !text-blue-600  px-4 mt-2 rounded !w-[100px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
               >
-                View
+                <FaFileExport size={20} strokeWidth={1} className="" />
+                Export
               </Button>
             </div>
             <div className="border-b-[2px] border-neutral-200 mt-6">
@@ -106,14 +129,7 @@ const TeachersPage = () => {
             {/* Div to show the content of the active tab */}
             <div className="bg-white min-h-100 border border-gray-200 shadow-md rounded-[8px] mt-6 mb-6">
               <div className="p-4 flex flex-col">
-                {/* <div className="flex flex-row justify-between">
-                                  <Paragraph  type="md" className="font-[500] ">Assessment Categories</Paragraph>
-                                  <Button className="!w-[150px] rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7] text-white"><HiPlus size={20} stroke-width={1} className="" />Add Category</Button>
-
-                              </div> */}
-                {/* <div className="pt-4"> */}
                 {tabContent[activeTab as keyof typeof tabContent]}
-                {/* </div> */}
               </div>
             </div>
           </div>
