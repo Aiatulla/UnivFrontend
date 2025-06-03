@@ -38,12 +38,12 @@ export const CustomModal = ({
       <Button
         onPress={onOpen}
         className={clsx(
-          `text-white rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7]`,
+          `text-white rounded-[8px] bg-[#0d6efd] hover:bg-[#0b5ed7] p-1 gap-0 min-w-[135px]`,
           buttomClassName
         )}
       >
-        <HiPlus size={20} strokeWidth={2} className="" />
-        <Paragraph className="text-white font-[500]">{button}</Paragraph>
+        <HiPlus size={16} strokeWidth={2} className="mr-[1px] !p-0" />
+        <Paragraph className="text-white font-[500] pr-1">{button}</Paragraph>
       </Button>
       <Modal
         isDismissable={false}

@@ -122,7 +122,7 @@ const AdminPage = () => {
     "Semesters",
   ];
 
-  const headers = [
+  const dashboardHeaders = [
     "Class ID",
     "Class Name",
     "Current Semester",
@@ -131,7 +131,7 @@ const AdminPage = () => {
     "Teachers",
     "Actions",
   ];
-  const data = [
+  const dashboardData = [
     [
       "CS24",
       "	Computer Science 2024",
@@ -139,20 +139,15 @@ const AdminPage = () => {
       "45",
       "6",
       "4",
-      <Button
-        type="button"
-        className="!bg-white !text-blue-600  px-4  rounded !w-[50px] !h-[30px] border !border-blue-600 hover:!bg-blue-600 hover:!text-white transition-colors duration-300 ease-in-out"
-      >
-        Manage
-      </Button>,
+      <ManageModal key="manage-modal" />,
     ],
   ];
 
   const pages = {
     Dashboard: (
       <CustomDashboard
-        headers={headers}
-        data={data}
+        headers={dashboardHeaders}
+        data={dashboardData}
         topLeftContent="Detailed GPA Report"
         topRightContent={
           <div className="flex">
@@ -198,16 +193,16 @@ const AdminPage = () => {
     ),
     Subjects: (
       <CustomDashboard
-        headers={headers}
-        data={data}
+        headers={headers1}
+        data={data1}
         topLeftContent="Subjects Management"
         topRightContent={<AddSubjectModal />}
       />
     ),
     Semesters: (
       <CustomDashboard
-        headers={headers}
-        data={data}
+        headers={headers1}
+        data={data1}
         topLeftContent="Semesters Management"
         topRightContent={<CreateSemesterModal />}
       />

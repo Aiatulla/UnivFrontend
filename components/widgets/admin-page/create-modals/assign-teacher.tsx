@@ -104,8 +104,8 @@ export const AssignTeacherModal = ({
       buttomClassName={className}
       onClick={handleAssign}
       header="Assign Teacher to Subject"
-      buttonLabel="Assign"
-      button="Assign"
+      buttonLabel="Assign Teacher"
+      button="Assign Teacher"
       content={
         <div className="flex flex-col gap-5 pt-3">
           <CustomDropdown

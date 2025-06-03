@@ -35,10 +35,10 @@ export const AssignSubjectModal = ({
         );
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong");
-        heroToast({
-          description: "Failed to load subjects",
-          color: "danger",
-        });
+        // heroToast({
+        //   description: "Failed to load subjects",
+        //   color: "danger",
+        // });
       }
     };
     loadSubjects();
@@ -78,8 +78,8 @@ export const AssignSubjectModal = ({
       buttomClassName={className}
       onClick={handleAssign}
       header="Assign Subject to Class"
-      buttonLabel="Assign"
-      button="Assign"
+      buttonLabel="Assign Subject"
+      button="Assign Subject"
       content={
         <div className="flex flex-col gap-5 pt-3">
           <CustomDropdown

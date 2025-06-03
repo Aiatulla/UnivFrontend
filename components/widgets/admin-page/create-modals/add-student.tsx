@@ -53,10 +53,10 @@ export const AddStudentModal = ({
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong");
-        heroToast({
-          description: "Failed to load classes",
-          color: "danger",
-        });
+        // heroToast({
+        //   description: "Failed to load classes",
+        //   color: "danger",
+        // });
       } finally {
         setLoading(false);
       }
