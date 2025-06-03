@@ -278,13 +278,28 @@ const AdminPage = () => {
               </Paragraph>
             </div>
             <div className="flex w-full whitespace-nowrap gap-4 scroll-thin py-2">
-              <InfoCards info="Classes" count="24" />
-              <InfoCards info="Students" count="45" className="bg-green-700" />
-              <InfoCards info="Teachers" count="10" className="bg-cyan-500" />
               <InfoCards
-                info="Active Semesters"
+                info="Classes"
+                count="24"
+                onClick={() => setActiveItem("Classes")}
+              />
+              <InfoCards
+                info="Students"
+                count="45"
+                className="bg-green-700"
+                onClick={() => setActiveItem("Students")}
+              />
+              <InfoCards
+                info="Teachers"
+                count="10"
+                className="bg-cyan-500"
+                onClick={() => setActiveItem("Teachers")}
+              />
+              <InfoCards
+                info="Subjects"
                 count="24"
                 className="bg-yellow-500"
+                onClick={() => setActiveItem("Subjects")}
               />
             </div>
 
